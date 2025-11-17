@@ -1,0 +1,56 @@
+                         ┌───────────────────────────┐
+                         │        Input Text         │
+                         │  (Cancer Medical Document)│
+                         └───────────────┬───────────┘
+                                         │
+                                         ▼
+                         ┌───────────────────────────┐
+                         │     Text Chunking         │
+                         │ (Splits into 256-token    │
+                         │           chunks)          │
+                         └───────────────┬───────────┘
+                                         │
+                                         ▼
+                 ┌────────────────────────────────────────────────┐
+                 │           Embedding Generation                 │
+                 │  HuggingFace: "gte-large" generates vectors    │
+                 └───────────────┬────────────────────────────────┘
+                                 │
+                                 ▼
+                    ┌───────────────────────────┐
+                    │     Vector Index (RAG)     │
+                    │  LlamaIndex VectorStore     │
+                    └───────────────┬───────────┘
+                                    │
+                                    ▼
+ ┌─────────────────────────────────────────────────────────────────────────────┐
+ │                                 Retrieval                                   │
+ │ Query from user → semantic search → top relevant chunks retrieved           │
+ └───────────────────────┬─────────────────────────────────────────────────────┘
+                         │
+                         ▼
+             ┌──────────────────────────────┐
+             │  Local GGUF LLM (Mistral 7B) │
+             │   LlamaCPP offline inference │
+             │ temperature=0.1              │
+             └───────────────┬──────────────┘
+                             │
+                             ▼
+                 ┌───────────────────────────┐
+                 │   Model Generated Answer   │
+                 └───────────────┬───────────┘
+                                 │
+                                 ▼
+                    ┌────────────────────────────┐
+                    │     Evaluation Engine       │
+                    ├────────────────────────────┤
+                    │  ✓ Cosine Similarity        │
+                    │  ✓ ROUGE-1 / ROUGE-L        │
+                    │  ✓ BLEU Score               │
+                    └───────────────┬────────────┘
+                                    │
+                                    ▼
+                    ┌────────────────────────────┐
+                    │      Score Comparison       │
+                    │  (GT vs Model Responses)    │
+                    └────────────────────────────┘
