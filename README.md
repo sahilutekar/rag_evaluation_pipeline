@@ -41,3 +41,12 @@ Metric	Purpose
 Cosine Similarity	Semantic similarity between answer & GT
 BLEU Score	Measures wording/pattern overlap
 ROUGE-1 / ROUGE-L	Measures recall & phrasing similarity
+
+| Question        | Cosine | BLEU | ROUGE-1 | ROUGE-L |
+| --------------- | ------ | ---- | ------- | ------- |
+| What is cancer? | 0.944  | 0.13 | 0.38    | 0.38    |
+| Symptoms?       | 0.813  | 0.09 | 0.32    | 0.30    |
+| Spread?         | 0.922  | 0.11 | 0.36    | 0.34    |
+
+
+
