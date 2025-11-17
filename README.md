@@ -48,5 +48,9 @@ ROUGE-1 / ROUGE-L	Measures recall & phrasing similarity
 | Symptoms?       | 0.813  | 0.09 | 0.32    | 0.30    |
 | Spread?         | 0.922  | 0.11 | 0.36    | 0.34    |
 
+Observations: “Cosine similarity captures meaning, so it remained high.
+ROUGE and BLEU require exact word overlap and penalize paraphrasing, so they are lower.
+This indicates the model answered correctly in meaning but not in wording.”
+
 
 
